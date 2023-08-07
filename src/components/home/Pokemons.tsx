@@ -1,10 +1,18 @@
 import { readAllPokemons } from "@/api/pokemons";
-import { PokemonCard } from "./PokemonCard";
+import PokemonCard from "./PokemonCard";
 import { PokemonType } from "@/types";
+import { useEffect, useState } from "react";
 
-interface PokemonsProps {}
-export async function Pokemons(props: PokemonsProps) {
-  const pokemons: PokemonType[] = await readAllPokemons();
+export default function Pokemons() {
+  const [pokemons, setPokemons] = useState<PokemonType[]>([]);
+
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      const pokemons = await readAllPokemons();
+      setPokemons(pokemons);
+    };
+    fetchPokemons();
+  }, []);
 
   return (
     <>

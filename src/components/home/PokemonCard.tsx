@@ -1,6 +1,6 @@
-import { findOutWhatTypePokemonIs } from "@/functions/findOutWhatTypePokemonIs";
 import Image from "next/image";
-import { PokemonType } from "../lib/PokemonTypeChip";
+import PokemonType from "../lib/PokemonTypeChip";
+import { setStylesOfTheType } from "@/functions/setStylesOfTheType";
 
 interface PokemonCardProps {
   pokedex: string;
@@ -9,13 +9,12 @@ interface PokemonCardProps {
   image: string;
 }
 
-const setStylesOfTheType = (type: string) => {
-  return findOutWhatTypePokemonIs[
-    type as keyof typeof findOutWhatTypePokemonIs
-  ];
-};
-
-export function PokemonCard({ pokedex, name, types, image }: PokemonCardProps) {
+export default function PokemonCard({
+  pokedex,
+  name,
+  types,
+  image,
+}: PokemonCardProps) {
   const hasMoreThanOneType = types.length > 1;
 
   const [typeStyle1, typeStyle2]: any[] = [
@@ -27,7 +26,8 @@ export function PokemonCard({ pokedex, name, types, image }: PokemonCardProps) {
     <>
       <div className="w-full h-auto bg-zinc-900 rounded-2xl overflow-hidden">
         <div
-          className={`bg-${typeStyle1.color}	transition-colors relative w-full py-4 flex justify-center items-center`}
+          className={`transition-colors relative w-full py-4 flex justify-center items-center`}
+          style={{ backgroundColor: typeStyle1.color }}
         >
           <Image
             src={image}
@@ -42,7 +42,6 @@ export function PokemonCard({ pokedex, name, types, image }: PokemonCardProps) {
             width={50}
             height={50}
             className="absolute left-2 bottom-2 w-1/5 fill-slate-50"
-            style={{ fill: "#fff" }}
           />
         </div>
         <div className="p-4 h-fit min-h-1/3 flex flex-col gap-4">

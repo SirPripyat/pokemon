@@ -8,9 +8,9 @@ export const readAllPokemons = async () => {
 
   const results = responsePokeApi.results;
 
-  const pokemonsJSON = await filterPokemonData(results);
+  const pokemons = await filterPokemonData(results);
 
-  return pokemonsJSON;
+  return pokemons;
 };
 
 const filterPokemonData = async (pokeArray: any) => {
