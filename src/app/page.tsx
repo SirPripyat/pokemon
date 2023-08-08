@@ -1,6 +1,6 @@
 "use client";
 
-import { AllPokemonsSection } from "@/components/home/AllPokemonsSection";
+import { AllPokemonsSection } from "@/components/home/AllPokemonsSection/AllPokemonsSection";
 import { MainBanner } from "@/components/home/MainBanner";
 
 export default function Home() {

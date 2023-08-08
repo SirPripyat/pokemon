@@ -1,6 +1,8 @@
 import Image from "next/image";
-import PokemonType from "../lib/PokemonTypeChip";
+import PokemonType from "../../lib/PokemonTypeChip/PokemonTypeChip";
 import { setStylesOfTheType } from "@/functions/setStylesOfTheType";
+import usePokemonTypeStyle from "./usePokemonTypeStyle";
+import usePokemonHasMoreThanOneType from "./usePokemonHasMoreThanOneType";
 
 interface PokemonCardProps {
   pokedex: string;
@@ -15,19 +17,18 @@ export default function PokemonCard({
   types,
   image,
 }: PokemonCardProps) {
-  const hasMoreThanOneType = types.length > 1;
+  const { hasMoreThanOneType } = usePokemonHasMoreThanOneType({ types });
 
-  const [typeStyle1, typeStyle2]: any[] = [
-    setStylesOfTheType(types[0]),
-    setStylesOfTheType(types[1]),
-  ];
+  const { firstPokemonTypeStyle, secondPokemonTypeStyle } = usePokemonTypeStyle(
+    { types }
+  );
 
   return (
     <>
       <div className="w-full h-auto bg-zinc-900 rounded-2xl overflow-hidden">
         <div
           className={`transition-colors relative w-full py-4 flex justify-center items-center`}
-          style={{ backgroundColor: typeStyle1.color }}
+          style={{ backgroundColor: firstPokemonTypeStyle.color }}
         >
           <Image
             src={image}
@@ -37,7 +38,7 @@ export default function PokemonCard({
             className="w-1/3 h-1/3 rounded-xl"
           />
           <Image
-            src={typeStyle1!.icon}
+            src={firstPokemonTypeStyle!.icon}
             alt="Pokemon's Type"
             width={50}
             height={50}
@@ -54,16 +55,16 @@ export default function PokemonCard({
           <div className="w-fit flex gap-3 justify-center items-center">
             <PokemonType
               type={types[0]}
-              color={typeStyle1.color}
-              icon={typeStyle1.icon}
-              hoverColor={typeStyle1.hoverColor}
+              color={firstPokemonTypeStyle.color}
+              icon={firstPokemonTypeStyle.icon}
+              hoverColor={firstPokemonTypeStyle.hoverColor}
             />
-            {hasMoreThanOneType && (
+            {hasMoreThanOneType() && (
               <PokemonType
                 type={types[1]}
-                color={typeStyle2.color}
-                icon={typeStyle2.icon}
-                hoverColor={typeStyle2.hoverColor}
+                color={secondPokemonTypeStyle.color}
+                icon={secondPokemonTypeStyle.icon}
+                hoverColor={secondPokemonTypeStyle.hoverColor}
               />
             )}
           </div>

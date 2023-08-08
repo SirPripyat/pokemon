@@ -3,8 +3,7 @@ import { ComponentsWrapper } from "../lib/ComponentsWrapper";
 import { ButtonFilled } from "../lib/buttons/ButtonFilled";
 import pokeball from "../../../public/pokeball-image.png";
 
-interface MainBannerProps {}
-export function MainBanner(props: MainBannerProps) {
+export function MainBanner() {
   return (
     <>
       <ComponentsWrapper
