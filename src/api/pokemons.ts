@@ -1,31 +1,23 @@
 import { POKEMON_FETCH_LIMIT } from "@/constants/pokemonFetchLimit";
 import { PokemonType } from "../types";
+import axios from "axios";
 
 export const readAllPokemons = async () => {
-  const responsePokeApi = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_FETCH_LIMIT}&offset=0`
-  ).then((res) => res.json());
+  const pokemonDetailEndpoints: string[] = [];
 
-  const results = responsePokeApi.results;
+  for (let i = 1; i <= POKEMON_FETCH_LIMIT; i++) {
+    pokemonDetailEndpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}`);
+  }
 
-  const pokemons = await filterPokemonData(results);
+  const response = await axios.all(
+    pokemonDetailEndpoints.map((endpoint) => axios.get(endpoint))
+  );
+
+  const pokemons = await Promise.all(
+    response.map((res) => handlePokemonData(res.data))
+  );
 
   return pokemons;
-};
-
-const filterPokemonData = async (pokeArray: any) => {
-  const filteredPokemons = await pokeArray.map(async (pokemon: any) => {
-    const url = await pokemon.url;
-    const fetchOnePokemon = await fetch(url).then((res) => res.json());
-
-    const pokemons = await handlePokemonData(fetchOnePokemon);
-
-    return pokemons;
-  });
-
-  const filteredPokemonsArray = await Promise.all(filteredPokemons);
-
-  return filteredPokemonsArray;
 };
 
 const handlePokemonData = async (pokemon: any) => {
