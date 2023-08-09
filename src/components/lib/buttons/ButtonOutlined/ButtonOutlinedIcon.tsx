@@ -4,7 +4,7 @@ interface ButtonOutlinedIconProps {
 export function ButtonOutlinedIcon({ icon: Icon }: ButtonOutlinedIconProps) {
   return (
     <>
-      <Icon className=" w-5 h-5" />
+      <Icon className="w-5 h-5" />
     </>
   );
 }

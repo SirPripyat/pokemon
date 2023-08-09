@@ -1,11 +1,11 @@
-import { POKEMON_FETCH_LIMIT } from "@/constants/pokemonFetchLimit";
 import { PokemonType } from "../types";
 import axios from "axios";
 
-export const readAllPokemons = async () => {
+export const readAllPokemons = async (pagination: string) => {
   const pokemonDetailEndpoints: string[] = [];
+  const paginationValue = parseInt(pagination);
 
-  for (let i = 1; i <= POKEMON_FETCH_LIMIT; i++) {
+  for (let i = 1; i <= paginationValue; i++) {
     pokemonDetailEndpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}`);
   }
 

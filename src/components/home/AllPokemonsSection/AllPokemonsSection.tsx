@@ -7,6 +7,7 @@ import { ButtonOutlinedIcon } from "../../lib/buttons/ButtonOutlined/ButtonOutli
 import FilterPokemonsModal from "../FilterPokemonsModal/FilterPokemonsModal";
 import useOpenAndCloseFilterModal from "./useOpenAndCloseFilterModal";
 import Pokemons from "../Pokemons/Pokemons";
+import Pagination from "../Pagination/Pagination";
 
 export function AllPokemonsSection() {
   const { filterModalIsOpen, openOrCloseFilterModal } =
@@ -29,6 +30,7 @@ export function AllPokemonsSection() {
           openOrCloseFilterModal={openOrCloseFilterModal}
         />
         <Pokemons />
+        <Pagination />
       </ComponentsWrapper>
     </>
   );

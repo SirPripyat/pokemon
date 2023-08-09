@@ -5,7 +5,7 @@ export default function useFetchPokemons() {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
 
   const fetchPokemons = useCallback(async () => {
-    const pokemonResponse = await readAllPokemons();
+    const pokemonResponse = await readAllPokemons("16");
     setPokemons(pokemonResponse);
   }, []);
 
