@@ -1,0 +1,1 @@
+export const LAST_POKEMON_PAGINATION = 1010;

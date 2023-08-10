@@ -8,7 +8,6 @@ import { ButtonOutlined } from "../../lib/buttons/ButtonOutlined";
 import { useRouter } from "next/navigation";
 import useFetchAllPokemonsTypes from "./useFetchAllPokemonTypes";
 import { useRef } from "react";
-import useSelectedPokemonTypeChip from "@/components/lib/PokemonTypeChip/useSelectedPokemonTypeChip";
 interface FilterPokemonsModalProps {
   isOpen: boolean;
   openOrCloseFilterModal: () => void;

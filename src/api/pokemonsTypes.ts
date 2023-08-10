@@ -1,5 +1,4 @@
 import { findOutWhatTypePokemonIs } from "@/functions/findOutWhatTypePokemonIs";
-import { get } from "https";
 
 export const readAllPokemonsTypes = async () => {
   const response = await fetch("https://pokeapi.co/api/v2/type").then((res) =>

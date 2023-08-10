@@ -3,9 +3,15 @@ import axios from "axios";
 
 export const readAllPokemons = async (pagination: string) => {
   const pokemonDetailEndpoints: string[] = [];
-  const paginationValue = parseInt(pagination);
 
-  for (let i = 1; i <= paginationValue; i++) {
+  const paginationNumber = parseInt(pagination);
+
+  const calculateHowManyPokemons = paginationNumber * 16;
+  const paginationValue = 16 + calculateHowManyPokemons;
+
+  const initialValue = 1 + calculateHowManyPokemons;
+
+  for (let i = initialValue; i <= paginationValue; i++) {
     pokemonDetailEndpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}`);
   }
 

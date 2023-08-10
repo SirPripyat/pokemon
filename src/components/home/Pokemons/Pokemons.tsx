@@ -1,7 +1,5 @@
-import { readAllPokemons } from "@/api/pokemons";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import { PokemonType } from "@/types";
-import { useEffect, useState } from "react";
 import useFetchPokemons from "./useFetchPokemons";
 
 export default function Pokemons() {
