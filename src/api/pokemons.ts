@@ -7,6 +7,7 @@ export const readAllPokemons = async (pagination: string) => {
   const paginationNumber = parseInt(pagination);
 
   const calculateHowManyPokemons = paginationNumber * 16;
+
   const paginationValue = 16 + calculateHowManyPokemons;
 
   const initialValue = 1 + calculateHowManyPokemons;
@@ -27,7 +28,7 @@ export const readAllPokemons = async (pagination: string) => {
 };
 
 const handlePokemonData = async (pokemon: any) => {
-  const pokedex = pokemon.id.toString().padStart(3, "0");
+  const pokedex = addZerosInPokedexNumber(pokemon.id);
 
   const poke: PokemonType = {
     pokedexNumber: pokedex,
@@ -37,6 +38,10 @@ const handlePokemonData = async (pokemon: any) => {
   };
 
   return poke;
+};
+
+const addZerosInPokedexNumber = (pokedexNumber: number) => {
+  return pokedexNumber.toString().padStart(3, "0");
 };
 
 const getPokemonTypes = (pokemon: any) => {
