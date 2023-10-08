@@ -16,7 +16,7 @@ export function AllPokemonsSection() {
     <>
       <ComponentsWrapper id={"#pokemons"}>
         <div className="w-full flex flex-col justify-center items-center gap-6 ">
-          <h2 className=" text-2xl font-bold">Pokémons</h2>
+          <h2 className=" text-2xl font-bold">Pokémoxs</h2>
         </div>
         <Pokemons />
         <Pagination />
