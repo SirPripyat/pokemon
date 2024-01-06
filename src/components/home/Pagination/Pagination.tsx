@@ -4,7 +4,6 @@ import { ButtonGhosted } from "@/components/lib/buttons/ButtonGhosted";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import usePagination from "./usePagination";
 import useDisabledPaginationButton from "./useDisabledPaginationButton";
-import { useRef } from "react";
 
 export default function Pagination() {
   const { goToNextPage, goToPreviousPage } = usePagination();

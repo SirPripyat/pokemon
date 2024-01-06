@@ -14,10 +14,13 @@ export default function PokemonCard({
     types,
   });
 
-  const {
-    firstPokemonTypeStyle: { color, icon },
-    secondPokemonTypeStyle,
-  } = usePokemonTypeStyle({ types });
+  const { firstPokemonTypeStyle, secondPokemonTypeStyle } = usePokemonTypeStyle(
+    { types }
+  );
+
+  if (!firstPokemonTypeStyle || !secondPokemonTypeStyle) return null;
+
+  const { color, icon } = firstPokemonTypeStyle;
 
   return (
     <>
