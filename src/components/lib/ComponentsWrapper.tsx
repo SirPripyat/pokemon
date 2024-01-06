@@ -1,6 +1,6 @@
 interface ComponentsWrapperProps {
   children: React.ReactNode;
-  className?: string | undefined;
+  className?: string;
   id?: string;
 }
 export function ComponentsWrapper({

@@ -1,29 +1,18 @@
 interface useDisabledPaginationButtonProps {}
 import { LAST_POKEMON_PAGINATION } from "@/constants/lastPokemonPagination";
 import { useSearchParams } from "next/navigation";
-import { useCallback } from "react";
 
-export default function useDisabledPaginationButton({}: useDisabledPaginationButtonProps) {
-  const searchParams = useSearchParams();
+export default function useDisabledPaginationButton() {
+  const { get } = useSearchParams();
 
-  const currentPageIsHome = searchParams.get("page") === null;
+  const thisCurrentPageIsHome = get("page") === null;
 
-  const currentPageIsLastPage = useCallback(
-    () => searchParams.get("page") === LAST_POKEMON_PAGINATION.toString(),
-    [searchParams]
-  );
+  const thisCurrentPageIsLastPage =
+    get("page") === LAST_POKEMON_PAGINATION.toString();
 
-  const disabledPreviousButton = useCallback(() => {
-    if (currentPageIsHome) return true;
+  const disabledPreviousButton = () => thisCurrentPageIsHome ?? false;
 
-    return false;
-  }, [currentPageIsHome]);
-
-  const disabledNextButton = useCallback(() => {
-    if (currentPageIsLastPage()) return true;
-
-    return false;
-  }, [currentPageIsLastPage]);
+  const disabledNextButton = () => thisCurrentPageIsLastPage ?? false;
 
   return {
     disabledPreviousButton,

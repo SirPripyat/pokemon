@@ -1,33 +1,30 @@
 "use client";
 
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useCallback } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
-interface usePaginationProps {}
 export default function usePagination() {
   const { push } = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const { get } = useSearchParams();
 
-  const currentPageIsHome = searchParams.get("page") === "";
+  const currentPageIsHome = get("page") === "";
 
-  const currentePageIsFirstPage = searchParams.get("page") === "1";
+  const currentePageIsFirstPage = get("page") === "1";
 
-  const goToNextPage = useCallback(() => {
+  const goToNextPage = () => {
     if (currentPageIsHome) return push(`/?page=${1}`);
 
-    const page = Number(searchParams.get("page"));
+    const getCurrentPage = Number(get("page"));
 
-    return push(`/?page=${page + 1}`);
-  }, [currentPageIsHome, push, searchParams]);
+    return push(`/?page=${getCurrentPage + 1}`);
+  };
 
-  const goToPreviousPage = useCallback(() => {
+  const goToPreviousPage = () => {
     if (currentePageIsFirstPage) return push("/");
 
-    const page = Number(searchParams.get("page"));
+    const getCurrentPage = Number(get("page"));
 
-    return push(`/?page=${page - 1}`);
-  }, [currentePageIsFirstPage, push, searchParams]);
+    return push(`/?page=${getCurrentPage - 1}`);
+  };
 
   return {
     goToPreviousPage,

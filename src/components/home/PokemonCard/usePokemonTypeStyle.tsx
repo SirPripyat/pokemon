@@ -1,12 +1,13 @@
 import { setStylesOfTheType } from "@/functions/setStylesOfTheType";
+import { PokemonsTypes } from "@/types";
 
 interface usePokemonTypeStyleProps {
-  types: string[];
+  types: PokemonsTypes[];
 }
 export default function usePokemonTypeStyle({
   types,
 }: usePokemonTypeStyleProps) {
-  const [firstPokemonTypeStyle, secondPokemonTypeStyle]: any[] = [
+  const [firstPokemonTypeStyle, secondPokemonTypeStyle] = [
     setStylesOfTheType(types[0]),
     setStylesOfTheType(types[1]),
   ];

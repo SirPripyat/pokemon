@@ -9,17 +9,13 @@ import { useRef } from "react";
 export default function Pagination() {
   const { goToNextPage, goToPreviousPage } = usePagination();
 
-  const previousButtonRef = useRef<HTMLButtonElement>(null);
-  const nextButtonRef = useRef<HTMLButtonElement>(null);
-
   const { disabledPreviousButton, disabledNextButton } =
-    useDisabledPaginationButton({});
+    useDisabledPaginationButton();
 
   return (
     <>
       <div className="w-full flex gap-6 justify-center md:justify-end">
         <ButtonGhosted.Root
-          ref={previousButtonRef}
           disabled={disabledPreviousButton()}
           onClick={() => goToPreviousPage()}
         >
@@ -27,7 +23,6 @@ export default function Pagination() {
           Anterior
         </ButtonGhosted.Root>
         <ButtonGhosted.Root
-          ref={nextButtonRef}
           disabled={disabledNextButton()}
           onClick={() => goToNextPage()}
         >

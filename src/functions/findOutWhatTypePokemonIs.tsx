@@ -1,5 +1,4 @@
 import Bug from "../../public/name=Bug.svg";
-import Dark from "../../public/name=Dark.svg";
 import Dragon from "../../public/name=Dragon.svg";
 import Electric from "../../public/name=Electric.svg";
 import Fairy from "../../public/name=Fairy.svg";
@@ -16,6 +15,7 @@ import Psychic from "../../public/name=Psychic.svg";
 import Rock from "../../public/name=Rock.svg";
 import Steel from "../../public/name=Steel.svg";
 import Water from "../../public/name=Water.svg";
+import { StylesOfPokemonsTypes } from "@/types";
 
 const waterColor = "rgb(59 130 246)";
 const dragonColor = "rgb(99 102 241)";
@@ -35,90 +35,73 @@ const poisonColor = "rgb(147 51 234)";
 const steelColor = "rgb(14 116 144)";
 const flyingColor = "rgb(37 99 235)";
 
-export const findOutWhatTypePokemonIs = {
+export const findOutWhatTypePokemonIs: StylesOfPokemonsTypes = {
   water: {
     color: waterColor,
-    hoverColor: "blue-500/20",
     icon: Water,
   },
   dragon: {
     color: dragonColor,
-    hoverColor: "indigo-500/20",
     icon: Dragon,
   },
   electric: {
     color: electricColor,
-    hoverColor: "yellow-300/20",
     icon: Electric,
   },
   fairy: {
     color: fairyColor,
-    hoverColor: "pink-300/20",
     icon: Fairy,
   },
   ghost: {
     color: ghostColor,
-    hoverColor: "purple-900/20",
     icon: Ghost,
   },
   fire: {
     color: fireColor,
-    hoverColor: "orange-500/20",
     icon: Fire,
   },
   ice: {
     color: iceColor,
-    hoverColor: "teal-500/20",
     icon: Ice,
   },
   grass: {
     color: grassColor,
-    hoverColor: "green-600/20",
     icon: Grass,
   },
   bug: {
     color: bugColor,
-    hoverColor: "lime-600/20",
     icon: Bug,
   },
   fighting: {
     color: fightingColor,
-    hoverColor: "pink-500/20",
     icon: Fighting,
   },
   normal: {
     color: normalColor,
-    hoverColor: "zinc-500/20",
     icon: Normal,
   },
   rock: {
     color: rockColor,
-    hoverColor: "zinc-600/20",
     icon: Rock,
   },
   psychic: {
     color: psychicColor,
-    hoverColor: "pink-400/20",
     icon: Psychic,
   },
   ground: {
     color: groundColor,
-    hoverColor: "yellow-700/20",
     icon: Ground,
   },
   poison: {
     color: poisonColor,
-    hoverColor: "purple-600/20",
     icon: Poison,
   },
   steel: {
     color: steelColor,
-    hoverColor: "cyan-700/20",
     icon: Steel,
   },
   flying: {
     color: flyingColor,
-    hoverColor: "blue-600/20",
     icon: Flying,
   },
 };
