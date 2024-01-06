@@ -32,11 +32,11 @@ export default function useFetchPokemons() {
   }, [verifyPathname]);
 
   useEffect(() => {
-    const { abort } = new AbortController();
+    const controller = new AbortController();
 
     fetchPokemons();
 
-    return () => abort();
+    return () => controller.abort();
   }, [fetchPokemons]);
 
   return { pokemons, isLoading };
