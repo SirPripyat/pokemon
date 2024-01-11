@@ -7,18 +7,16 @@ import Image from "next/image";
 export default function PokemonCard({
   pokedexNumber,
   name,
-  types,
+  pokemonTypes,
   image,
 }: PokemonCardProps) {
   const { thisPokemonHasMoreThanOneType } = usePokemonHasMoreThanOneType({
-    types,
+    pokemonTypes,
   });
 
   const { firstPokemonTypeStyle, secondPokemonTypeStyle } = usePokemonTypeStyle(
-    { types }
+    { pokemonTypes }
   );
-
-  if (!firstPokemonTypeStyle || !secondPokemonTypeStyle) return null;
 
   const { color, icon } = firstPokemonTypeStyle;
 
@@ -52,10 +50,10 @@ export default function PokemonCard({
             </h3>
           </div>
           <div className="w-fit flex gap-3 justify-center items-center">
-            <PokemonType type={types[0]} color={color} icon={icon} />
+            <PokemonType type={pokemonTypes[0]} color={color} icon={icon} />
             {thisPokemonHasMoreThanOneType && (
               <PokemonType
-                type={types[1]}
+                type={pokemonTypes[1]}
                 color={secondPokemonTypeStyle.color}
                 icon={secondPokemonTypeStyle.icon}
               />

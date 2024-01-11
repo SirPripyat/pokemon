@@ -1,10 +1,12 @@
+import { PokemonsTypes } from "@/types";
+
 interface usePokemonHasMoreThanOneTypeProps {
-  types: string[];
+  pokemonTypes: PokemonsTypes[];
 }
 export default function usePokemonHasMoreThanOneType({
-  types,
+  pokemonTypes,
 }: usePokemonHasMoreThanOneTypeProps) {
-  const thisPokemonHasMoreThanOneType = types.length > 1;
+  const thisPokemonHasMoreThanOneType = pokemonTypes.length > 1;
 
   return { thisPokemonHasMoreThanOneType };
 }

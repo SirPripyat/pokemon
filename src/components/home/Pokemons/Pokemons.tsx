@@ -11,14 +11,8 @@ export default function Pokemons() {
       {isLoading && <LoaderScreen />}
       {!isLoading && (
         <div className="w-full grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-          {pokemons.map(({ pokedexNumber, name, types, image }: Pokemon) => (
-            <PokemonCard
-              key={pokedexNumber}
-              pokedexNumber={pokedexNumber}
-              name={name}
-              types={types}
-              image={image}
-            />
+          {pokemons.map((pokemon: Pokemon) => (
+            <PokemonCard key={pokemon.index} {...pokemon} />
           ))}
         </div>
       )}
