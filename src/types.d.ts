@@ -2,27 +2,11 @@ import { StaticImageData } from "next/image";
 import { findOutWhatTypePokemonIs } from "./functions/findOutWhatTypePokemonIs";
 
 export type Pokemon = {
+  index: number;
+  name: string;
   pokedexNumber: string;
-  name: string;
-  types: PokemonsTypes[];
   image: string;
-};
-
-export type PokemonResponse = {
-  id: number;
-  name: string;
-  sprites: {
-    other: {
-      "official-artwork": {
-        front_default: string;
-      };
-    };
-  };
-  types: {
-    type: {
-      name: string;
-    };
-  }[];
+  pokemonTypes: PokemonsTypes[];
 };
 
 export type PokemonsTypes =
