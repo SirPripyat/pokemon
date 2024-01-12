@@ -1,5 +1,5 @@
+import { Pokemon } from "@/types/pokemon";
 import PokemonCard from "../PokemonCard/PokemonCard";
-import { Pokemon } from "@/types";
 import useFetchPokemons from "./useFetchPokemons";
 import LoaderScreen from "@/components/lib/LoaderScreen/LoaderScreen";
 
