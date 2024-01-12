@@ -15,7 +15,7 @@ import Psychic from "../../public/name=Psychic.svg";
 import Rock from "../../public/name=Rock.svg";
 import Steel from "../../public/name=Steel.svg";
 import Water from "../../public/name=Water.svg";
-import { StylesOfPokemonsTypes } from "@/types";
+import { StylesOfPokemonsTypes } from "@/types/stylesOfPokemonsTypes";
 
 const waterColor = "rgb(59 130 246)";
 const dragonColor = "rgb(99 102 241)";

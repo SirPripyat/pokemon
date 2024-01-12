@@ -1,5 +1,5 @@
 interface useDisabledPaginationButtonProps {}
-import { LAST_POKEMON_PAGINATION } from "@/constants/lastPokemonPagination";
+import { useSetLastPageStore } from "@/store/lastPageStore";
 import { useSearchParams } from "next/navigation";
 
 export default function useDisabledPaginationButton() {
@@ -7,8 +7,9 @@ export default function useDisabledPaginationButton() {
 
   const thisCurrentPageIsHome = get("page") === null;
 
-  const thisCurrentPageIsLastPage =
-    get("page") === LAST_POKEMON_PAGINATION.toString();
+  const { lastPage } = useSetLastPageStore();
+
+  const thisCurrentPageIsLastPage = get("page") === lastPage;
 
   const disabledPreviousButton = () => thisCurrentPageIsHome ?? false;
 

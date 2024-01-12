@@ -1,7 +1,7 @@
 import PokemonType from "../../lib/PokemonTypeChip/PokemonTypeChip";
 import usePokemonTypeStyle from "./usePokemonTypeStyle";
 import usePokemonHasMoreThanOneType from "./usePokemonHasMoreThanOneType";
-import { Pokemon as PokemonCardProps } from "@/types";
+import { Pokemon as PokemonCardProps } from "@/types/pokemon";
 import Image from "next/image";
 
 export default function PokemonCard({

@@ -1,18 +1,37 @@
-import { Pokemon } from "../types";
+import { Pokemon } from "@/types/pokemon";
+import { ReadAllPokemonsResponse } from "@/types/readAllPokemonsResponse";
 import axios from "axios";
 
 const BASE_URL = "https://pokemon-api-d4e8682433d8.herokuapp.com";
 
-export const readAllPokemons = async (): Promise<Pokemon[]> => {
-  const response = await axios
-    .get<Pokemon[]>(`${BASE_URL}/pokemon`)
-    .catch((error) => {
-      throw new Error(error);
-    });
+type ReadAllPokemons = {
+  pokemons: Pokemon[];
+  totalPages: number;
+};
 
-  const pokemonResponse: Pokemon[] = response.data.sort(
-    (a, b) => a.index - b.index
-  );
+export const readAllPokemons = async (
+  page: string
+): Promise<ReadAllPokemons> => {
+  try {
+    return tryPokemonRequest(page);
+  } catch (error) {
+    throw new Error("Error while fetching pokemons");
+  }
+};
 
-  return pokemonResponse;
+const tryPokemonRequest = async (page: string) => {
+  const calculatePage = parseInt(page) + 1;
+
+  const pageInString = calculatePage.toString();
+
+  const {
+    data: { pokemons, totalPages },
+  } = (await axios.get(
+    `${BASE_URL}/pokemon?page=${pageInString}`
+  )) as ReadAllPokemonsResponse;
+
+  return {
+    pokemons,
+    totalPages,
+  };
 };

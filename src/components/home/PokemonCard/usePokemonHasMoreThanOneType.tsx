@@ -1,4 +1,4 @@
-import { PokemonsTypes } from "@/types";
+import { PokemonsTypes } from "@/types/pokemonsTypes";
 
 interface usePokemonHasMoreThanOneTypeProps {
   pokemonTypes: PokemonsTypes[];

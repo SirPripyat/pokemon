@@ -1,5 +1,5 @@
 import { setStylesOfTheType } from "@/functions/setStylesOfTheType";
-import { PokemonsTypes } from "@/types";
+import { PokemonsTypes } from "@/types/pokemonsTypes";
 
 interface usePokemonTypeStyleProps {
   pokemonTypes: PokemonsTypes[];
