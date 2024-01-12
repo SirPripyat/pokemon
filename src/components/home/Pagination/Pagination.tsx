@@ -15,14 +15,14 @@ export default function Pagination() {
     <>
       <div className="w-full flex gap-6 justify-center md:justify-end">
         <ButtonGhosted.Root
-          disabled={disabledPreviousButton()}
+          disabled={disabledPreviousButton}
           onClick={() => goToPreviousPage()}
         >
           <ButtonGhosted.Icon icon={ChevronLeft} />
           Anterior
         </ButtonGhosted.Root>
         <ButtonGhosted.Root
-          disabled={disabledNextButton()}
+          disabled={disabledNextButton}
           onClick={() => goToNextPage()}
         >
           Próxima

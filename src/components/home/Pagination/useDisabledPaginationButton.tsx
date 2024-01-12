@@ -11,9 +11,9 @@ export default function useDisabledPaginationButton() {
 
   const thisCurrentPageIsLastPage = get("page") === lastPage;
 
-  const disabledPreviousButton = () => thisCurrentPageIsHome ?? false;
+  const disabledPreviousButton = thisCurrentPageIsHome ?? false;
 
-  const disabledNextButton = () => thisCurrentPageIsLastPage ?? false;
+  const disabledNextButton = thisCurrentPageIsLastPage ?? false;
 
   return {
     disabledPreviousButton,

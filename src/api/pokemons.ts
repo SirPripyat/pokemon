@@ -19,7 +19,7 @@ export const readAllPokemons = async (
   }
 };
 
-const tryPokemonRequest = async (page: string) => {
+const tryPokemonRequest = async (page: string): Promise<ReadAllPokemons> => {
   const calculatePage = parseInt(page) + 1;
 
   const pageInString = calculatePage.toString();

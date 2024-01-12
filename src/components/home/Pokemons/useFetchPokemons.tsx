@@ -9,10 +9,10 @@ export default function useFetchPokemons() {
 
   const { get } = useSearchParams();
 
-  const verifyPathname = useCallback(() => {
+  const verifyPathname = useCallback((): string => {
     const currentPage = get("page");
 
-    if (currentPage === null) return "0";
+    if (!currentPage) return "0";
 
     return currentPage;
   }, [get]);
@@ -20,12 +20,12 @@ export default function useFetchPokemons() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const { setLastPage } = useSetLastPageStore();
 
-  const fetchPokemons = useCallback(async () => {
+  const fetchPokemons = useCallback(async (): Promise<void> => {
     setIsLoading(true);
 
     const pathname = verifyPathname();
 
-    if (pathname === null) return;
+    if (!pathname) return;
 
     const { pokemons, totalPages } = await readAllPokemons(pathname);
 
