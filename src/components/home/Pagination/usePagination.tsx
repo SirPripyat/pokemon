@@ -8,8 +8,6 @@ export default function usePagination() {
 
   const currentPageIsHome = get("page") === "";
 
-  const currentePageIsFirstPage = get("page") === "1";
-
   const goToNextPage = () => {
     if (currentPageIsHome) return push(`/?page=${1}`);
 
@@ -17,6 +15,8 @@ export default function usePagination() {
 
     return push(`/?page=${getCurrentPage + 1}`);
   };
+
+  const currentePageIsFirstPage = get("page") === "1";
 
   const goToPreviousPage = () => {
     if (currentePageIsFirstPage) return push("/");
