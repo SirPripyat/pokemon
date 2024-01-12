@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-zinc-950 text-zinc-50`}>
         <TopAppBar />
-        <div className="mt-[73px]">{children}</div>
+        <div className="mt-[76px]">{children}</div>
       </body>
     </html>
   );
