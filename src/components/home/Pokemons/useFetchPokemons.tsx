@@ -1,7 +1,6 @@
 import { readAllPokemons } from "@/api/pokemons";
-import { useSetLastPageStore } from "@/store/lastPageStore";
-import { Pokemon } from "@/types/pokemon";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePokemonDataStore } from "@/store/pokemonDataStore";
+import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useFetchPokemons() {
@@ -9,31 +8,30 @@ export default function useFetchPokemons() {
 
   const { get } = useSearchParams();
 
-  const verifyPathname = useCallback((): string => {
+  const verifyPathname = useCallback(() => {
     const currentPage = get("page");
+    const searchParam = get("search");
 
-    if (!currentPage) return "0";
-
-    return currentPage;
+    return {
+      searchParam: searchParam ? searchParam : "",
+      currentPage: currentPage ? currentPage : "0",
+    };
   }, [get]);
 
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  const { setLastPage } = useSetLastPageStore();
+  const { setPokemonData } = usePokemonDataStore();
 
   const fetchPokemons = useCallback(async (): Promise<void> => {
     setIsLoading(true);
 
-    const pathname = verifyPathname();
+    const { currentPage, searchParam } = verifyPathname();
 
-    if (!pathname) return;
+    if (!currentPage) return;
 
-    const { pokemons, totalPages } = await readAllPokemons(pathname);
-
-    setPokemons(pokemons);
-    setLastPage(totalPages);
+    const response = await readAllPokemons(currentPage, searchParam);
+    setPokemonData(response);
 
     setIsLoading(false);
-  }, [setLastPage, verifyPathname]);
+  }, [setPokemonData, verifyPathname]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -43,5 +41,5 @@ export default function useFetchPokemons() {
     return () => controller.abort();
   }, [fetchPokemons]);
 
-  return { pokemons, isLoading };
+  return { isLoading };
 }
