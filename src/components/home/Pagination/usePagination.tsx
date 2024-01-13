@@ -1,34 +1,29 @@
 "use client";
 
+import useValidateFiltersOnRoute from "@/hooks/useValidateFiltersOnRoute";
 import { useSearchParams, useRouter } from "next/navigation";
 
 export default function usePagination() {
   const { push } = useRouter();
   const { get } = useSearchParams();
 
-  const currentPageIsHome = get("page") === "";
+  const currentPageIsHome = get("page") === null;
 
-  const searchParam = get("search");
+  const { searchParam } = useValidateFiltersOnRoute();
 
-  const getSearchParam = searchParam ? `search=${searchParam}` : "";
+  const getCurrentPage = Number(get("page"));
 
-  const goToNextPage = () => {
-    if (currentPageIsHome) return push(`/?page=1&${getSearchParam}`);
-
-    const getCurrentPage = Number(get("page"));
-
-    push(`/?page=${getCurrentPage + 1}&${getSearchParam}`);
-  };
+  const goToNextPage = () =>
+    currentPageIsHome
+      ? push(`/?page=1&${searchParam}`)
+      : push(`/?page=${getCurrentPage + 1}&${searchParam}`);
 
   const currentePageIsFirstPage = get("page") === "1";
 
-  const goToPreviousPage = () => {
-    if (currentePageIsFirstPage) return push(`/?${getSearchParam}`);
-
-    const getCurrentPage = Number(get("page"));
-
-    push(`/?page=${getCurrentPage - 1}&${getSearchParam}`);
-  };
+  const goToPreviousPage = () =>
+    currentePageIsFirstPage
+      ? push(`/?${searchParam}`)
+      : push(`/?page=${getCurrentPage - 1}&${searchParam}`);
 
   return {
     goToPreviousPage,

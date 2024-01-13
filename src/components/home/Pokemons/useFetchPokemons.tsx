@@ -1,11 +1,10 @@
 import { readAllPokemons } from "@/api/pokemons";
 import { usePokemonDataStore } from "@/store/pokemonDataStore";
-import { useSearchParams } from "next/navigation";
+import { ReadAllPokemonsResponse } from "@/types/readAllPokemonsResponse";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 export default function useFetchPokemons() {
-  const [isLoading, setIsLoading] = useState(false);
-
   const { get } = useSearchParams();
 
   const verifyPathname = useCallback(() => {
@@ -13,25 +12,35 @@ export default function useFetchPokemons() {
     const searchParam = get("search");
 
     return {
-      searchParam: searchParam ? searchParam : "",
-      currentPage: currentPage ? currentPage : "0",
+      searchParam: searchParam || "",
+      pageParam: currentPage || "0",
     };
   }, [get]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { pageParam, searchParam } = verifyPathname();
   const { setPokemonData } = usePokemonDataStore();
+  const { push } = useRouter();
+
+  const handleFetchPokemons = useCallback(
+    (res: ReadAllPokemonsResponse["data"]): void => {
+      const { currentPage, totalPages } = res;
+
+      if (currentPage > totalPages) push(`/?search=${searchParam}`);
+
+      setPokemonData(res);
+    },
+    [push, searchParam, setPokemonData]
+  );
 
   const fetchPokemons = useCallback(async (): Promise<void> => {
     setIsLoading(true);
 
-    const { currentPage, searchParam } = verifyPathname();
-
-    if (!currentPage) return;
-
-    const response = await readAllPokemons(currentPage, searchParam);
-    setPokemonData(response);
-
-    setIsLoading(false);
-  }, [setPokemonData, verifyPathname]);
+    await readAllPokemons(pageParam, searchParam)
+      .then((res) => handleFetchPokemons(res))
+      .finally(() => setIsLoading(false));
+  }, [handleFetchPokemons, pageParam, searchParam]);
 
   useEffect(() => {
     const controller = new AbortController();
