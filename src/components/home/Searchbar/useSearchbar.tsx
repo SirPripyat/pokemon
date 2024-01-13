@@ -1,10 +1,11 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import useValidateFiltersOnRoute from "@/hooks/useValidateFiltersOnRoute";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function useSearchbar() {
   const [search, setSearch] = useState("");
 
-  const { get } = useSearchParams();
+  const { pageParam, searchParam } = useValidateFiltersOnRoute();
 
   const { replace, push } = useRouter();
 
@@ -12,12 +13,11 @@ export default function useSearchbar() {
     const { value } = event.target;
     setSearch(value);
 
-    if (!value) return push("/");
-
-    const pageParam = get("page") ? `page=${get("page")}&` : "";
-
-    replace(`?${pageParam}search=${value}`);
+    return ifSearchbarIsEmptyPushToHome(value);
   };
+
+  const ifSearchbarIsEmptyPushToHome = (value: string) =>
+    !value ? push("/") : replace(`?${pageParam}search=${value}`);
 
   return {
     search,

@@ -3,13 +3,13 @@
 import { ComponentsWrapper } from "../../lib/ComponentsWrapper";
 import Pagination from "../Pagination/Pagination";
 import Pokemons from "../Pokemons/Pokemons";
-import Searchbar from "../Searchbar/Searchbar";
+import TopContent from "../TopContent/TopContent";
 
 export function AllPokemonsSection() {
   return (
     <>
       <ComponentsWrapper>
-        <Searchbar />
+        <TopContent />
         <Pokemons />
         <Pagination />
       </ComponentsWrapper>
