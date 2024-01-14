@@ -1,8 +1,5 @@
-import { Pokemon } from "@/types/pokemon";
 import { ReadAllPokemonsResponse } from "@/types/readAllPokemonsResponse";
 import axios from "axios";
-
-const BASE_URL = "https://pokemon-api-d4e8682433d8.herokuapp.com";
 
 export const readAllPokemons = async (
   page: string,
@@ -24,7 +21,7 @@ const tryPokemonRequest = async (
   const pageInString = calculatePage.toString();
 
   const { data } = await axios.get(
-    `${BASE_URL}/pokemon?page=${pageInString}&search=${search}`
+    `${process.env.NEXT_PUBLIC_POKEDEX_API}/pokemon?page=${pageInString}&search=${search}`
   );
 
   return data;
