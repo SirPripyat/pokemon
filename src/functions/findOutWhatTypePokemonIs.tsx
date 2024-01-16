@@ -19,7 +19,7 @@ import { StylesOfPokemonsTypes } from "@/types/stylesOfPokemonsTypes";
 
 const waterColor = "rgb(59 130 246)";
 const dragonColor = "rgb(99 102 241)";
-const electricColor = "rgb(253 224 71)";
+const electricColor = "rgb(189, 164, 0)";
 const fairyColor = "rgb(249 168 212)";
 const ghostColor = "rgb(88 28 135)";
 const fireColor = "rgb(249 115 22)";
