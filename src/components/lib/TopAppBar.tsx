@@ -5,7 +5,7 @@ import Link from "next/link";
 export function TopAppBar() {
   return (
     <header className="fixed top-0 left-0 w-screen px-6 py-4 flex justify-center items-center dark:bg-zinc-900 border-b border-b-red-600 z-50">
-      <Link href="/">
+      <Link href="/?page=1">
         <Image
           src={pokeLogo}
           alt="Pokemon's Logo"
