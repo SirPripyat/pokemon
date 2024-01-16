@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function useFetchPokemons() {
   const searchParams = useSearchParams();
+  const pageParams = searchParams.get("page");
 
   const readAllPokemons = useCallback(
     async (): Promise<ReadAllPokemonsResponse> =>
@@ -22,11 +23,15 @@ export default function useFetchPokemons() {
     (res: ReadAllPokemonsResponse["data"]): void => {
       const { currentPage, totalPages } = res;
 
-      if (currentPage > totalPages) push(`/?${searchParams}`);
+      const removePageParamsFromUrl = searchParams
+        .toString()
+        .replace(`page=${pageParams}`, "");
+
+      if (currentPage > totalPages) push(`/?${removePageParamsFromUrl}`);
 
       setPokemonData(res);
     },
-    [push, searchParams, setPokemonData]
+    [pageParams, push, searchParams, setPokemonData]
   );
 
   const [isLoading, setIsLoading] = useState(false);
