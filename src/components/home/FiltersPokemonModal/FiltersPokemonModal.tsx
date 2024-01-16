@@ -5,33 +5,14 @@ import PokemonType from "@/components/lib/PokemonTypeChip/PokemonTypeChip";
 import { ButtonFilled } from "@/components/lib/buttons/ButtonFilled";
 import { ButtonOutlined } from "@/components/lib/buttons/ButtonOutlined";
 import { findOutWhatTypePokemonIs } from "@/functions/findOutWhatTypePokemonIs";
-import { usePokemonsTypesFilterStore } from "@/store/pokemonsTypesFilterStore";
+import useFiltersPokemonModal from "./useFiltersPokemonModal";
 import { useToggleFiltersPokemonModalStore } from "@/store/toggleFiltersPokemonModalStore";
-import { PokemonsTypes } from "@/types/pokemonsTypes";
-import { useRouter } from "next/navigation";
 
 export default function FiltersPokemonModal() {
   const { isFiltersPokemonModalOpen, toggleFiltersPokemonModal } =
     useToggleFiltersPokemonModalStore();
 
-  const pokemonTypes = Object.keys(findOutWhatTypePokemonIs) as PokemonsTypes[];
-
-  const { pokemonsTypesFilter } = usePokemonsTypesFilterStore();
-
-  const { push } = useRouter();
-
-  const shootPokemonsTypesFilter = () => {
-    if (!pokemonsTypesFilter) return;
-
-    let filterParam = "";
-
-    pokemonsTypesFilter.forEach((type) => {
-      filterParam += `&types=${type}`;
-    });
-
-    push(`?${filterParam}`);
-    toggleFiltersPokemonModal();
-  };
+  const { pokemonTypes, shootPokemonsTypesFilter } = useFiltersPokemonModal();
 
   return (
     isFiltersPokemonModalOpen && (

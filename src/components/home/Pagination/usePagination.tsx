@@ -1,29 +1,26 @@
 "use client";
 
-import useValidateFiltersOnRoute from "@/hooks/useValidateFiltersOnRoute";
-import { useSearchParams, useRouter } from "next/navigation";
+import useCreateQueryString from "@/hooks/useCreateQueryString";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 export default function usePagination() {
+  const searchParams = useSearchParams();
+  const getCurrentPage = Number(searchParams.get("page"));
   const { push } = useRouter();
-  const { get } = useSearchParams();
+  const pathname = usePathname();
+  const { createQueryString } = useCreateQueryString();
 
-  const currentPageIsHome = get("page") === null;
+  const goToNextPage = () => {
+    const nextPage = getCurrentPage + 1;
 
-  const { searchParam } = useValidateFiltersOnRoute();
+    return push(`${pathname}?${createQueryString("page", `${nextPage}`)}`);
+  };
 
-  const getCurrentPage = Number(get("page"));
+  const goToPreviousPage = () => {
+    const previousPage = getCurrentPage - 1;
 
-  const goToNextPage = () =>
-    currentPageIsHome
-      ? push(`/?page=1&${searchParam}`)
-      : push(`/?page=${getCurrentPage + 1}&${searchParam}`);
-
-  const currentePageIsFirstPage = get("page") === "1";
-
-  const goToPreviousPage = () =>
-    currentePageIsFirstPage
-      ? push(`/?${searchParam}`)
-      : push(`/?page=${getCurrentPage - 1}&${searchParam}`);
+    return push(`${pathname}?${createQueryString("page", `${previousPage}`)}`);
+  };
 
   return {
     goToPreviousPage,
