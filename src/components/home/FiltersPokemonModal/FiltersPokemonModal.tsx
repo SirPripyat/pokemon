@@ -7,12 +7,15 @@ import { ButtonOutlined } from "@/components/lib/buttons/ButtonOutlined";
 import { findOutWhatTypePokemonIs } from "@/functions/findOutWhatTypePokemonIs";
 import useFiltersPokemonModal from "./useFiltersPokemonModal";
 import { useToggleFiltersPokemonModalStore } from "@/store/toggleFiltersPokemonModalStore";
+import { usePokemonsTypesFilterStore } from "@/store/pokemonsTypesFilterStore";
 
 export default function FiltersPokemonModal() {
   const { isFiltersPokemonModalOpen, toggleFiltersPokemonModal } =
     useToggleFiltersPokemonModalStore();
 
   const { pokemonTypes, shootPokemonsTypesFilter } = useFiltersPokemonModal();
+
+  const { removeAllPokemons } = usePokemonsTypesFilterStore();
 
   return (
     isFiltersPokemonModalOpen && (
@@ -30,8 +33,13 @@ export default function FiltersPokemonModal() {
           ))}
         </div>
         <div className="w-full flex items-center justify-end gap-4">
-          <ButtonOutlined.Root onClick={toggleFiltersPokemonModal}>
-            Cancel
+          <ButtonOutlined.Root
+            onClick={() => {
+              toggleFiltersPokemonModal();
+              removeAllPokemons();
+            }}
+          >
+            Remove all
           </ButtonOutlined.Root>
           <ButtonFilled.Root onClick={shootPokemonsTypesFilter}>
             Filter
