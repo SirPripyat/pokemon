@@ -1,11 +1,9 @@
 "use client";
 
 import { AllPokemonsSection } from "@/components/home/AllPokemonsSection/AllPokemonsSection";
-import usePushFirstPageOnRoute from "@/hooks/usePushFirstPageOnRoute";
-import useRemovePokemonsOnFilter from "@/hooks/useRemovePokemonsOnFilter";
+import useRemovePokemonsOnFilter from "@/globalHooks/useRemovePokemonsOnFilter";
 
 export default function Home() {
-  usePushFirstPageOnRoute();
   useRemovePokemonsOnFilter();
 
   return (
