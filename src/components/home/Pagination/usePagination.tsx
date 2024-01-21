@@ -1,6 +1,6 @@
 "use client";
 
-import useCreateQueryString from "@/hooks/useCreateQueryString";
+import useCreateQueryString from "@/globalHooks/useCreateQueryString";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 export default function usePagination() {

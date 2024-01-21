@@ -1,5 +1,5 @@
 import { findOutWhatTypePokemonIs } from "@/functions/findOutWhatTypePokemonIs";
-import useCreateQueryString from "@/hooks/useCreateQueryString";
+import useCreateQueryString from "@/globalHooks/useCreateQueryString";
 import { usePokemonsTypesFilterStore } from "@/store/pokemonsTypesFilterStore";
 import { useToggleFiltersPokemonModalStore } from "@/store/toggleFiltersPokemonModalStore";
 import { PokemonsTypes } from "@/types/pokemonsTypes";
