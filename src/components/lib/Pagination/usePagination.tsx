@@ -10,16 +10,26 @@ export default function usePagination() {
   const pathname = usePathname();
   const { createQueryString } = useCreateQueryString();
 
-  const goToNextPage = () => {
-    const nextPage = getCurrentPage + 1;
+  const isHomePage = getCurrentPage === 0;
 
-    return push(`${pathname}?${createQueryString("page", `${nextPage}`)}`);
+  const goToNextPage = (): void => {
+    const nextPage = isHomePage ? 2 : getCurrentPage + 1;
+
+    const pageParams = createQueryString("page", `${nextPage}`);
+
+    const url = `${pathname}?${pageParams}`;
+
+    return push(url);
   };
 
-  const goToPreviousPage = () => {
+  const isSecondPageOfPagination = getCurrentPage === 2;
+
+  const goToPreviousPage = (): void => {
     const previousPage = getCurrentPage - 1;
 
-    return push(`${pathname}?${createQueryString("page", `${previousPage}`)}`);
+    return isSecondPageOfPagination
+      ? push("/")
+      : push(`${pathname}?${createQueryString("page", `${previousPage}`)}`);
   };
 
   return {
