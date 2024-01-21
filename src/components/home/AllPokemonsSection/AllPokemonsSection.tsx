@@ -1,10 +1,10 @@
 "use client";
 
-import { ComponentsWrapper } from "../../lib/ComponentsWrapper";
-import FiltersPokemonModal from "../FiltersPokemonModal/FiltersPokemonModal";
-import Pagination from "../Pagination/Pagination";
-import Pokemons from "../Pokemons/Pokemons";
-import TopContent from "../TopContent/TopContent";
+import ComponentsWrapper from "@/components/lib/ComponentsWrapper";
+import TopContent from "@/components/home/TopContent/TopContent";
+import FiltersPokemonModal from "@/components/home/FiltersPokemonModal/FiltersPokemonModal";
+import Pokemons from "@/components/home/Pokemons/Pokemons";
+import Pagination from "@/components/lib/Pagination/Pagination";
 
 export function AllPokemonsSection() {
   return (

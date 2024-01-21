@@ -1,4 +1,4 @@
-import useCreateQueryString from "@/hooks/useCreateQueryString";
+import useCreateQueryString from "@/globalHooks/useCreateQueryString";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 

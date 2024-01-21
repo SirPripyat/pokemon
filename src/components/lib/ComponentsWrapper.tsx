@@ -3,7 +3,7 @@ interface ComponentsWrapperProps {
   className?: string;
   id?: string;
 }
-export function ComponentsWrapper({
+export default function ComponentsWrapper({
   children,
   className,
   id,
