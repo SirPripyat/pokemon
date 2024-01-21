@@ -1,6 +1,6 @@
 "use client";
 
-import { ComponentsWrapper } from "@/components/lib/ComponentsWrapper";
+import ComponentsWrapper from "@/components/lib/ComponentsWrapper";
 import TopContent from "@/components/home/TopContent/TopContent";
 import FiltersPokemonModal from "@/components/home/FiltersPokemonModal/FiltersPokemonModal";
 import Pokemons from "@/components/home/Pokemons/Pokemons";

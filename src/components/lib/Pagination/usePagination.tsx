@@ -27,8 +27,10 @@ export default function usePagination() {
   const goToPreviousPage = (): void => {
     const previousPage = getCurrentPage - 1;
 
+    const removePageOnParams = searchParams.toString().replace("page=2", "");
+
     return isSecondPageOfPagination
-      ? push("/")
+      ? push(`${pathname}?${removePageOnParams}`)
       : push(`${pathname}?${createQueryString("page", `${previousPage}`)}`);
   };
 

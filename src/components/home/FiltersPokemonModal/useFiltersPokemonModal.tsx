@@ -2,12 +2,10 @@ import { findOutWhatTypePokemonIs } from "@/functions/findOutWhatTypePokemonIs";
 import useCreateQueryString from "@/globalHooks/useCreateQueryString";
 import { usePokemonsTypesFilterStore } from "@/store/pokemonsTypesFilterStore";
 import { useToggleFiltersPokemonModalStore } from "@/store/toggleFiltersPokemonModalStore";
-import { PokemonsTypes } from "@/types/pokemonsTypes";
+import type { PokemonsTypes } from "@/types/pokemonsTypes";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function useFiltersPokemonModal() {
-  const { toggleFiltersPokemonModal } = useToggleFiltersPokemonModalStore();
-
   const pokemonTypes = Object.keys(findOutWhatTypePokemonIs) as PokemonsTypes[];
 
   const { pokemonsTypesFilter } = usePokemonsTypesFilterStore();
@@ -15,24 +13,29 @@ export default function useFiltersPokemonModal() {
   const { push } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const pageParams = searchParams.get("page");
+  const searchParamsFromRouter = searchParams.get("search");
+  const { toggleFiltersPokemonModal } = useToggleFiltersPokemonModalStore();
 
-  const shootPokemonsTypesFilter = () => {
+  const shootPokemonsTypesFilter = (): void => {
     if (!pokemonsTypesFilter) return;
 
-    const query = pokemonsTypesFilter.map((type) => {
-      const queryString = createQueryString("types", `${type}`);
-
-      return queryString.replace("page=1&", "");
+    const query: string[] = pokemonsTypesFilter.map((type) => {
+      let queryString = createQueryString("types", `${type}`);
+      queryString = queryString.replace(/search=[^&]*/g, "");
+      queryString = queryString.replace("page=1", "");
+      return queryString;
     });
-
     const uniqueQueryValues = [...new Set(query)];
 
-    const page = searchParams.get("page") && `page=${searchParams.get("page")}`;
-    const search = searchParams.get("search")
-      ? `&search=${searchParams.get("search")}&`
+    const page = pageParams ? `page=${pageParams}` : "";
+
+    const search = searchParamsFromRouter
+      ? `&search=${searchParamsFromRouter}&`
       : "";
 
-    const url = `${pathname}?${page}&${search}${uniqueQueryValues.join("&")}`;
+    let url = `${pathname}?${page}&${search}${uniqueQueryValues.join("&")}`;
+    url = url.replaceAll("&&", "&");
 
     push(url);
     toggleFiltersPokemonModal();
