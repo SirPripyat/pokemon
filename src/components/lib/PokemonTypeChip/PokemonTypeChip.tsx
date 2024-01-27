@@ -3,18 +3,18 @@ import Image, { StaticImageData } from "next/image";
 import usePokemonTypeChip from "./usePokemonTypeChip";
 import { usePokemonsTypesFilterStore } from "@/store/pokemonsTypesFilterStore";
 
-interface PokemonTypeProps {
+interface PokemonTypeChipProps {
   type: PokemonsTypes;
   color: string;
   icon: StaticImageData;
   isBehaviorOfFilter?: boolean;
 }
-export default function PokemonType({
+export default function PokemonTypeChip({
   color,
   icon,
   type,
   isBehaviorOfFilter,
-}: PokemonTypeProps) {
+}: PokemonTypeChipProps) {
   const { setTypeActiveAndGetTypes } = usePokemonTypeChip();
   const { pokemonsTypesFilter } = usePokemonsTypesFilterStore();
 
