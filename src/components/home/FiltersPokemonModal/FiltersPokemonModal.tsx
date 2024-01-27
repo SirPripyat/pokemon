@@ -1,7 +1,7 @@
 "use client";
 
 import Modal from "@/components/lib/Modal/Modal";
-import PokemonType from "@/components/lib/PokemonTypeChip/PokemonTypeChip";
+import PokemonTypeChip from "@/components/lib/PokemonTypeChip/PokemonTypeChip";
 import { ButtonFilled } from "@/components/lib/buttons/ButtonFilled";
 import { ButtonOutlined } from "@/components/lib/buttons/ButtonOutlined";
 import { findOutWhatTypePokemonIs } from "@/functions/findOutWhatTypePokemonIs";
@@ -23,7 +23,7 @@ export default function FiltersPokemonModal() {
         Select types do you want to filter:
         <div className="w-full h-80 overflow-hidden overflow-y-auto flex gap-3 flex-wrap sm:h-auto">
           {pokemonTypes.map((type, index) => (
-            <PokemonType
+            <PokemonTypeChip
               key={index}
               type={type}
               color={findOutWhatTypePokemonIs[type].color}

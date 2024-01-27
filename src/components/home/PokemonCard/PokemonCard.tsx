@@ -1,15 +1,21 @@
-import PokemonType from "../../lib/PokemonTypeChip/PokemonTypeChip";
-import usePokemonTypeStyle from "./usePokemonTypeStyle";
-import usePokemonHasMoreThanOneType from "./usePokemonHasMoreThanOneType";
-import { Pokemon as PokemonCardProps } from "@/types/pokemon";
+import PokemonTypeChip from "../../lib/PokemonTypeChip/PokemonTypeChip";
+import usePokemonTypeStyle from "../../../globalHooks/usePokemonTypeStyle";
+import usePokemonHasMoreThanOneType from "../../../globalHooks/usePokemonHasMoreThanOneType";
+import { BasicInformation } from "@/types/basicInformation";
 import Image from "next/image";
+import Link from "next/link";
+
+type PokemonCardsProps = Omit<
+  BasicInformation,
+  "height" | "weight" | "abilities"
+>;
 
 export default function PokemonCard({
   pokedexNumber,
   name,
   pokemonTypes,
   image,
-}: PokemonCardProps) {
+}: PokemonCardsProps) {
   const { thisPokemonHasMoreThanOneType } = usePokemonHasMoreThanOneType({
     pokemonTypes,
   });
@@ -21,7 +27,10 @@ export default function PokemonCard({
   const { color, icon } = firstPokemonTypeStyle;
 
   return (
-    <div className="w-full h-auto bg-zinc-900 rounded-2xl overflow-hidden">
+    <Link
+      href={`/${name}`}
+      className="w-full h-auto bg-zinc-900 rounded-2xl overflow-hidden border-2 border-zinc-900 hover:border-zinc-800 hover:shadow-lg transition-all"
+    >
       <div
         className={`transition-colors relative w-full py-4 flex justify-center items-center`}
         style={{ backgroundColor: color }}
@@ -47,9 +56,9 @@ export default function PokemonCard({
           <h3 className=" text-lg font-bold first-letter:uppercase">{name}</h3>
         </div>
         <div className="w-fit flex gap-3 justify-center items-center">
-          <PokemonType type={pokemonTypes[0]} color={color} icon={icon} />
+          <PokemonTypeChip type={pokemonTypes[0]} color={color} icon={icon} />
           {thisPokemonHasMoreThanOneType && (
-            <PokemonType
+            <PokemonTypeChip
               type={pokemonTypes[1]}
               color={secondPokemonTypeStyle.color}
               icon={secondPokemonTypeStyle.icon}
@@ -57,6 +66,6 @@ export default function PokemonCard({
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

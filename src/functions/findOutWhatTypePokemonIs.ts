@@ -1,3 +1,23 @@
+import {
+  bugColor,
+  darkColor,
+  dragonColor,
+  electricColor,
+  fairyColor,
+  fightingColor,
+  fireColor,
+  flyingColor,
+  ghostColor,
+  grassColor,
+  groundColor,
+  iceColor,
+  normalColor,
+  poisonColor,
+  psychicColor,
+  rockColor,
+  steelColor,
+  waterColor,
+} from "@/stylesInLine/pokemonTypeColor";
 import Bug from "../../public/name=Bug.svg";
 import Dragon from "../../public/name=Dragon.svg";
 import Electric from "../../public/name=Electric.svg";
@@ -15,25 +35,8 @@ import Psychic from "../../public/name=Psychic.svg";
 import Rock from "../../public/name=Rock.svg";
 import Steel from "../../public/name=Steel.svg";
 import Water from "../../public/name=Water.svg";
+import Dark from "../../public/name=Dark.svg";
 import { StylesOfPokemonsTypes } from "@/types/stylesOfPokemonsTypes";
-
-const waterColor = "rgb(59 130 246)";
-const dragonColor = "rgb(99 102 241)";
-const electricColor = "rgb(189, 164, 0)";
-const fairyColor = "rgb(249 168 212)";
-const ghostColor = "rgb(88 28 135)";
-const fireColor = "rgb(249 115 22)";
-const iceColor = "rgb(20 184 166)";
-const grassColor = "rgb(22 163 74)";
-const bugColor = "rgb(101 163 13)";
-const fightingColor = "rgb(236 72 153)";
-const normalColor = "rgb(113 113 122)";
-const rockColor = "rgb(82 82 91)";
-const psychicColor = "rgb(244 114 182)";
-const groundColor = "rgb(161 98 7)";
-const poisonColor = "rgb(147 51 234)";
-const steelColor = "rgb(14 116 144)";
-const flyingColor = "rgb(37 99 235)";
 
 export const findOutWhatTypePokemonIs: StylesOfPokemonsTypes = {
   water: {
@@ -103,5 +106,9 @@ export const findOutWhatTypePokemonIs: StylesOfPokemonsTypes = {
   flying: {
     color: flyingColor,
     icon: Flying,
+  },
+  dark: {
+    color: darkColor,
+    icon: Dark,
   },
 };

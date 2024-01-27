@@ -15,4 +15,5 @@ export type PokemonsTypes =
   | "ground"
   | "poison"
   | "steel"
-  | "flying";
+  | "flying"
+  | "dark";
