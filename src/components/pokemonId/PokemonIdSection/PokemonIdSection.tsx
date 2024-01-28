@@ -9,6 +9,7 @@ import Divisor from "@/components/lib/Divisor/Divisor";
 import BaseStatsSection from "../BaseStatsSection/BaseStatsSection";
 import Weaknessess from "../Weaknessess/Weaknessess";
 import OtherSimilarPokemons from "../OtherSimilarPokemons/OtherSimilarPokemons";
+import EvolutionChain from "../evolution-chain/evolution-chain.component";
 
 interface PokemonIdSectionProps {
   pokemonId: string;
@@ -38,6 +39,7 @@ export default function PokemonIdSection({ pokemonId }: PokemonIdSectionProps) {
             <Weaknessess />
           </div>
           <Divisor />
+          <EvolutionChain />
           <OtherSimilarPokemons />
         </>
       )}
