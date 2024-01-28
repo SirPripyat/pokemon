@@ -1,5 +1,6 @@
 import { usePokemonIdDataStore } from "@/store/pokemonIdDataStore";
 import { Pokemon } from "@/types/pokemon";
+import { PokemonCard } from "@/types/pokemon-card.type";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -9,9 +10,9 @@ export default function useFetchOtherSimilarPokemons() {
 
   const type = pokemonIdData?.basicInformation.pokemonTypes[0];
 
-  const [otherSimilarPokemons, setOtherSimilarPokemons] = useState<Pokemon[]>(
-    []
-  );
+  const [otherSimilarPokemons, setOtherSimilarPokemons] = useState<
+    PokemonCard[]
+  >([]);
 
   const hasOtherSimilarPokemons = otherSimilarPokemons.length > 0;
 

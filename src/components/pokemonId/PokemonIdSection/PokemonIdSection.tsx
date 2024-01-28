@@ -19,7 +19,7 @@ export default function PokemonIdSection({ pokemonId }: PokemonIdSectionProps) {
   const { isLoading } = useFecthPokemonId({ pokemonId });
 
   const columsnDivStyle =
-    "w-full grid grid-cols-1 md:gap-10 md:grid-cols-2  lg:gap-16";
+    "w-full gap-8 grid grid-cols-1 md:gap-10 md:grid-cols-2  lg:gap-16";
 
   return (
     <ComponentsWrapper>
