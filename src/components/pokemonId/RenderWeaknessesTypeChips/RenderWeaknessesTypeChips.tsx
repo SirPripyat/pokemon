@@ -12,8 +12,6 @@ export default function RenderWeaknessesTypeChips({
     pokemonTypes: [weakness],
   });
 
-  console.log(weakness);
-
   const { color, icon } = firstPokemonTypeStyle;
 
   return <PokemonTypeChip color={color} icon={icon} type={weakness} />;

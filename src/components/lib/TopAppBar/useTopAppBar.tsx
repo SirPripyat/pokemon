@@ -1,4 +1,3 @@
-import { SCREEN_SIZES } from "@/constants/screenSizes";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
@@ -14,12 +13,10 @@ export default function useTopAppBar() {
   const pathname = usePathname();
   const isntHomePage = pathname !== "/";
 
-  const screenWidthSizeIsLessThanMd = screenWidth < SCREEN_SIZES.md;
-
-  const arrowBackIsVisible = isntHomePage && screenWidthSizeIsLessThanMd;
+  const arrowBackIsVisible = isntHomePage;
 
   const { back } = useRouter();
-  const goToPreviousRoute = () => back();
+  const goToPreviousRoute = (): void => back();
 
   return { arrowBackIsVisible, goToPreviousRoute };
 }
