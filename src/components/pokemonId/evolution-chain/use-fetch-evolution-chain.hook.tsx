@@ -1,5 +1,5 @@
 import { usePokemonIdDataStore } from "@/store/pokemonIdDataStore";
-import { Pokemon } from "@/types/pokemon";
+import { PokemonCard } from "@/types/pokemon-card.type";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 
@@ -7,7 +7,7 @@ export default function useFetchEvolutionChain() {
   const { pokemonIdData } = usePokemonIdDataStore();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [evolutionChain, setEvolutionChain] = useState<Pokemon[]>([]);
+  const [evolutionChain, setEvolutionChain] = useState<PokemonCard[]>([]);
 
   const fetchEvolutionChain = useCallback(async () => {
     if (!pokemonIdData) return;

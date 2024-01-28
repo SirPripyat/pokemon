@@ -1,14 +1,9 @@
 import PokemonTypeChip from "../../lib/PokemonTypeChip/PokemonTypeChip";
 import usePokemonTypeStyle from "../../../globalHooks/usePokemonTypeStyle";
 import usePokemonHasMoreThanOneType from "../../../globalHooks/usePokemonHasMoreThanOneType";
-import { BasicInformation } from "@/types/basicInformation";
 import Image from "next/image";
 import Link from "next/link";
-
-type PokemonCardsProps = Omit<
-  BasicInformation,
-  "height" | "weight" | "abilities"
->;
+import type { PokemonCard as PokemonCardsProps } from "@/types/pokemon-card.type";
 
 export default function PokemonCard({
   pokedexNumber,
@@ -52,7 +47,7 @@ export default function PokemonCard({
       </div>
       <div className="p-4 h-fit min-h-1/3 flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <small className="text-gray-500">#{pokedexNumber}</small>
+          <small className="text-gray-500">{pokedexNumber}</small>
           <h3 className=" text-lg font-bold first-letter:uppercase">{name}</h3>
         </div>
         <div className="w-fit flex gap-3 justify-center items-center">
