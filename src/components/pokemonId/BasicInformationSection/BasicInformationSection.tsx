@@ -10,8 +10,15 @@ import PokemonIdSectionWrapper from "../PokemonIdSectionWrapper/PokemonIdSection
 export default function BasicInformationSection() {
   const { pokemonIdData } = usePokemonIdDataStore();
 
-  const { pokemonTypes, pokedexNumber, name, weight, height, abilities } =
-    pokemonIdData.basicInformation;
+  const {
+    pokemonTypes,
+    pokedexNumber,
+    name,
+    weight,
+    height,
+    abilities,
+    description,
+  } = pokemonIdData.basicInformation;
 
   const { thisPokemonHasMoreThanOneType } = usePokemonHasMoreThanOneType({
     pokemonTypes,
@@ -24,8 +31,11 @@ export default function BasicInformationSection() {
   return (
     <PokemonIdSectionWrapper>
       <div className="flex items-center justify-center gap-3 w-full">
-        <h3 className="text-lg text-gray-500">#{pokedexNumber}</h3>
+        <h3 className="text-lg text-gray-500">{pokedexNumber}</h3>
         <Title>{name}</Title>
+      </div>
+      <div>
+        <p>{description}</p>
       </div>
       <div className="flex gap-3">
         <PokemonTypeChip
