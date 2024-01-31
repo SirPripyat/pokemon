@@ -1,6 +1,5 @@
 import { usePokemonsTypesFilterStore } from "@/store/pokemonsTypesFilterStore";
 import { PokemonsTypes } from "@/types/pokemonsTypes";
-import { useSearchParams } from "next/navigation";
 
 interface usePokemonTypeChipProps {
   type: PokemonsTypes;
@@ -25,9 +24,6 @@ export default function usePokemonTypeChip({
 
     pushPokemonsTypesFilter([type]);
   };
-
-  const searchParam = useSearchParams();
-  const getType: string[] = searchParam.getAll("types");
 
   const pokemonChipIsActive = (): boolean =>
     pokemonsTypesFilter.includes(type) && isBehaviorOfFilter ? true : false;
