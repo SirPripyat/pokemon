@@ -1,9 +1,9 @@
 import { usePokemonIdDataStore } from "@/store/pokemonIdDataStore";
-import { Pokemon } from "@/types/pokemon";
 import { PokemonCard } from "@/types/pokemon-card.type";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { usePokemonsTypesFilterStore } from "@/store/pokemonsTypesFilterStore";
 
 export default function useFetchOtherSimilarPokemons() {
   const { pokemonIdData } = usePokemonIdDataStore();
@@ -35,7 +35,16 @@ export default function useFetchOtherSimilarPokemons() {
 
   const { push } = useRouter();
 
-  const seeMorePokemonsWithSameType = () => push(`/?types=${type}`);
+  const { pushPokemonsTypesFilter, removeAllPokemons } =
+    usePokemonsTypesFilterStore();
+
+  const seeMorePokemonsWithSameType = (): void => {
+    if (!type) return;
+
+    removeAllPokemons();
+    pushPokemonsTypesFilter([type]);
+    push(`/?types=${type}`);
+  };
 
   return {
     type,
