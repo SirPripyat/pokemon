@@ -27,8 +27,20 @@ export default function useFiltersPokemonModal() {
     toggleFiltersPokemonModal();
   };
 
+  const { removeAllPokemons } = usePokemonsTypesFilterStore();
+
+  const removeAllPokemonsTypesFilterOnRoute = (): void => {
+    removeAllPokemons();
+
+    const params = createQueryStringWithMultipleValues("", [""]);
+    replace(pathname + "?" + params);
+
+    toggleFiltersPokemonModal();
+  };
+
   return {
     pokemonTypes,
     shootPokemonsTypesFilter,
+    removeAllPokemonsTypesFilterOnRoute,
   };
 }
