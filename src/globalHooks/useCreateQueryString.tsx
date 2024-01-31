@@ -16,8 +16,8 @@ export default function useCreateQueryString() {
       [searchParams]
     );
 
-  const search = searchParams.get("search");
-  const page = searchParams.get("page");
+  const search = searchParams.get("search") ?? "";
+  const page = searchParams.get("page") ?? "";
 
   const createQueryStringWithMultipleValues: (
     name: string,
