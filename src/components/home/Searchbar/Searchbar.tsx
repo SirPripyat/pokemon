@@ -7,7 +7,7 @@ export default function Searchbar() {
   return (
     <form className="relative w-full sm:w-fit rounded-full overflow-hidden">
       <input
-        className="w-full py-2 px-4 pr-12 rounded-full bg-transparent border border-red-600 focus:outline-none focus:border-red-800 transition duration-300 ease-in-out "
+        className="w-full py-2 px-4 pr-20 rounded-full bg-transparent border border-red-600 focus:outline-none focus:border-red-800 transition duration-300 ease-in-out "
         type="text"
         value={search}
         onChange={handleSearchChange}
