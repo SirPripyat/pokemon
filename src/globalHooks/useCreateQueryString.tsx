@@ -6,7 +6,7 @@ export default function useCreateQueryString() {
 
   const createQueryString: (name: string, value: string) => string =
     useCallback(
-      (name: string, value: string) => {
+      (name: string, value: string): string => {
         const params = new URLSearchParams(searchParams.toString());
 
         params.set(name, value);
@@ -23,8 +23,11 @@ export default function useCreateQueryString() {
     name: string,
     values: string[]
   ) => string = useCallback(
-    (name: string, values: string[]) => {
-      const baseUrl = `search=${search}&page=${page}`;
+    (name: string, values: string[]): string => {
+      const filterSearch = search ? `?search=${search}` : "";
+      const filterPage = page ? `&page=${page}` : "";
+
+      const baseUrl = `${filterSearch}${filterPage}`;
 
       const params = new URLSearchParams(baseUrl);
 
