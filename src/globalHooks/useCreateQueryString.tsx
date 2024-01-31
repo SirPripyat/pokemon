@@ -16,15 +16,17 @@ export default function useCreateQueryString() {
       [searchParams]
     );
 
-  const search = searchParams.get("search");
-  const page = searchParams.get("page");
+  const search = searchParams.get("search") ?? "";
+  const page = searchParams.get("page") ?? "";
 
   const createQueryStringWithMultipleValues: (
     name: string,
     values: string[]
   ) => string = useCallback(
     (name: string, values: string[]) => {
-      const baseUrl = `search=${search}&page=${page}`;
+      const pageUrl = page ? `page=${page}` : "";
+      const searchUrl = search ? `search=${search}` : "";
+      const baseUrl = `?${pageUrl}&${searchUrl}`;
 
       const params = new URLSearchParams(baseUrl);
 
