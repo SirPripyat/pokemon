@@ -25,7 +25,7 @@ export default function useFetchPokemons() {
 
       const removePageParamsFromUrl = searchParams
         .toString()
-        .replace(`page=${pageParams}`, `page=${1}`);
+        .replace(`page=${pageParams}`, "");
 
       if (currentPage > totalPages) push(`/?${removePageParamsFromUrl}`);
 

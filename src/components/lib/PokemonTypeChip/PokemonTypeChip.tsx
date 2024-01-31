@@ -1,7 +1,6 @@
 import { PokemonsTypes } from "@/types/pokemonsTypes";
 import Image, { StaticImageData } from "next/image";
 import usePokemonTypeChip from "./usePokemonTypeChip";
-import { usePokemonsTypesFilterStore } from "@/store/pokemonsTypesFilterStore";
 
 interface PokemonTypeChipProps {
   type: PokemonsTypes;
@@ -15,16 +14,11 @@ export default function PokemonTypeChip({
   type,
   isBehaviorOfFilter,
 }: PokemonTypeChipProps) {
-  const { setTypeActiveAndGetTypes } = usePokemonTypeChip();
-  const { pokemonsTypesFilter } = usePokemonsTypesFilterStore();
-
-  const pokemonChipIsActive =
-    pokemonsTypesFilter.includes(type) && isBehaviorOfFilter;
-
-  const buttonStyles = {
-    backgroundColor: pokemonChipIsActive ? color : "transparent",
-    borderColor: pokemonChipIsActive ? "transparent" : color,
-  };
+  const { setTypeActiveAndGetTypes, buttonStyles } = usePokemonTypeChip({
+    type,
+    isBehaviorOfFilter,
+    color,
+  });
 
   return (
     <button

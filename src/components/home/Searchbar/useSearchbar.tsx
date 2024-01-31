@@ -8,17 +8,10 @@ export default function useSearchbar() {
   const pathname = usePathname();
   const { createQueryString } = useCreateQueryString();
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = event.target;
     setSearch(value);
-
-    return ifSearchbarIsEmptyPushToHome(value);
   };
-
-  const ifSearchbarIsEmptyPushToHome = (value: string) =>
-    !value
-      ? push("/")
-      : push(`${pathname}?${createQueryString("search", `${value}`)}`);
 
   const { get } = useSearchParams();
   const searchParam = get("search");
@@ -28,8 +21,17 @@ export default function useSearchbar() {
     setSearch(searchValue);
   }, [searchParam]);
 
+  const pushSearch = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+
+    return push(`${pathname}?${createQueryString("search", `${search}`)}`);
+  };
+
   return {
     search,
     handleSearchChange,
+    pushSearch,
   };
 }
