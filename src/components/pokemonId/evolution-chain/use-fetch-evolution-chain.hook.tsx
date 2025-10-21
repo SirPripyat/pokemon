@@ -1,29 +1,19 @@
-import { usePokemonIdDataStore } from "@/store/pokemonIdDataStore";
-import { PokemonCard } from "@/types/pokemon-card.type";
-import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function useFetchEvolutionChain() {
-  const { pokemonIdData } = usePokemonIdDataStore();
-
   const [isLoading, setIsLoading] = useState(false);
-  const [evolutionChain, setEvolutionChain] = useState<PokemonCard[]>([]);
+  const [evolutionChain, setEvolutionChain] = useState<[]>([]);
 
   const fetchEvolutionChain = useCallback(async () => {
-    if (!pokemonIdData) return;
-
     setIsLoading(true);
 
-    const pokemonName = pokemonIdData.basicInformation.name;
-
     await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_POKEDEX_API}/evolution-chain/${pokemonName}`
-      )
+      .get(`${process.env.NEXT_PUBLIC_POKEDEX_API}/evolution-chain/pikachu`)
       .then(({ data }) => setEvolutionChain(data))
-      .catch((err) => console.log(err))
+      .catch(err => console.log(err))
       .finally(() => setIsLoading(false));
-  }, [pokemonIdData]);
+  }, []);
 
   useEffect(() => {
     fetchEvolutionChain();

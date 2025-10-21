@@ -1,4 +1,4 @@
-import PokemonIdSection from "@/components/pokemonId/PokemonIdSection/PokemonIdSection";
+import ViewPokemonDetailPage from '@/pages/view-pokemon-detail/ViewPokemonDetailPage';
 
 interface PokemonIdPageProps {
   params: {
@@ -8,5 +8,5 @@ interface PokemonIdPageProps {
 export default function PokemonIdPage({
   params: { pokemonId },
 }: PokemonIdPageProps) {
-  return <PokemonIdSection pokemonId={pokemonId} />;
+  return <ViewPokemonDetailPage pokemonId={pokemonId} />;
 }
